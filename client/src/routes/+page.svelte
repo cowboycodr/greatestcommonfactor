@@ -47,18 +47,26 @@
     $: gcd = getGCD(numbers) || 0;
 </script>
 
+<svelte:head>
+    <title>
+        Greatest Common Factor
+    </title>
+</svelte:head>
+
 <svelte:window 
     on:keydown={handleKeyDown}
 />
 
 <main>
     <div class="container">
-        [
-        {#each numbers as number}
-            {number},&NonBreakingSpace;
-        {/each}
-        <input type="text" bind:this={input}>
-        ] = {gcd}
+        GCF([
+        <span class="important">
+            {#each numbers as number}
+                {number},&NonBreakingSpace;
+            {/each}
+            <input type="text" bind:this={input}>
+        </span>
+        ]) = <span class="important">{gcd}</span>
     </div>
 </main>
 
@@ -72,11 +80,17 @@
 
     div.container {
         font-size: 50px;
+        color: gray;
     }
 
     div.container input {
         font-family: var(--apple-font);
         font-size: 50px;
         width: 70px;
+    }
+
+    .important {
+        color: black;
+        font-family: var(--apple-font);
     }
 </style>
